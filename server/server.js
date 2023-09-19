@@ -16,10 +16,10 @@ app.get('/', (req, res) => {
 });
 
 // create the get request for students in the endpoint '/api/students'
-app.get('/api/tracker', async (req, res) => {
+app.get('/sightings', async (req, res) => {
     try {
-        const { rows: animals } = await db.query('SELECT * FROM tracker');
-        res.send(tracker);
+        const { rows: animals } = await db.query('SELECT * FROM sightings');
+        res.send(animals);
     } catch (e) {
         return res.status(400).json({ e });
     }
