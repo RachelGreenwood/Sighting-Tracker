@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MyForm from './Form';
 import Sighting from './Sighting';
+import Card from 'react-bootstrap/Card';
 
 const Sightings = () => {
     const [sightings, setSightings] = useState([]);

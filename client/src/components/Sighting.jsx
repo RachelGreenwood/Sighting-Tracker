@@ -9,7 +9,27 @@ const Sighting = ({sighting}) => {
     return (
         <Card>
             <Card.Body>
-            <Card.Title>{sighting.species} {sighting.location} {moment(sighting.datetime).format("MMMM Do, YYYY")} {sighting.healthy} {sighting.sighter_email} </Card.Title>
+            <table>
+                <thead>
+                    <th>Species</th>
+                    <th>Location</th>
+                    <th>Date of Sighting</th>
+                    <th>Healthy?</th>
+                    <th>Spotter</th>
+                    <th>Record Creation Date</th>
+                    <th>Cryptid Name</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{sighting.species}</td>
+                        <td>{sighting.location}</td>
+                        <td>{moment(sighting.datetime).format("MMMM Do, YYYY")}</td>
+                        <td>{sighting.healthy.toString()}</td>
+                        <td>{sighting.sighter_email}</td>
+                        <td>{moment(sighting.timestamp).format("MMMM Do, YYYY")}</td>
+                    </tr>
+                </tbody>
+            </table>
             {/* <Button variant="outline-danger" onClick={()=>{onDelete(student)}} style={{padding: '0.6em', marginRight:'0.9em'}}><ioicons.IoTrash/></Button> */}
             {/* <Button variant="outline-info" onClick={()=>{onUpdate(student)}} style={{padding: '0.6em'}}> <ioicons.IoSync/></Button> */}
             </Card.Body>
