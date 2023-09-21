@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import MyForm from './Form';
-import Card from 'react-bootstrap/Card';
 import moment from 'moment';
 
 const Sightings = () => {
@@ -39,6 +37,7 @@ const Sightings = () => {
                         <td>{sighting.healthy.toString()}</td>
                         <td>{sighting.sighter_email}</td>
                         <td>{moment(sighting.timestamp).format("MMMM Do, YYYY")}</td>
+                        <td>{sighting.nickname}</td>
                     </tr>
                 })}
                 </tbody>
