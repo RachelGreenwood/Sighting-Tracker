@@ -39,28 +39,31 @@ app.get('/sightings', async (req, res) => {
     }
 });
 
-// create the POST request
-// app.post('/api/tracker', async (req, res) => {
-//     try {
-//         const newStudent = {
-//             firstname: req.body.firstname,
-//             lastname: req.body.lastname,
-//             iscurrent: req.body.iscurrent
-//         };
-//         //console.log([newStudent.firstname, newStudent.lastname, newStudent.iscurrent]);
-//         const result = await db.query(
-//             'INSERT INTO tracker(firstname, lastname, is_current) VALUES($1, $2, $3) RETURNING *',
-//             [newStudent.firstname, newStudent.lastname, newStudent.iscurrent],
-//         );
-//         console.log(result.rows[0]);
-//         res.json(result.rows[0]);
+app.post('/animals', async (req, res) => {
+    try {
+        console.log("In the server2", req.body);
+        const newAnimal = {nickname: req.body.nickname, species: req.body.species, timestamp: new Date()}
+        const newSighting = {location: req.body.location, datetime: req.body.datetime, sighter_email: req.body.sighter_email, healthy: req.body.healthy}
+        const result = await db.query(
+            `INSERT INTO animals (nickname, species, timestamp) VALUES($1, $2, $3) RETURNING *`,
+            [newAnimal.nickname, newAnimal.species, newAnimal.timestamp]
+        );
 
-//     } catch (e) {
-//         console.log(e);
-//         return res.status(400).json({ e });
-//     }
+        const result1 = await db.query(
+            `INSERT INTO sightings (datetime, species, location, healthy, sighter_email, timestamp) VALUES($1, $2, $3, $4, $5, $6) RETURNING *`,
+            [newSighting.datetime, newAnimal.species, newSighting.location, newSighting.healthy, newSighting.sighter_email, newAnimal.timestamp]
+        );
 
-// });
+        let dbResponse = result.rows[0];
+        let dbResponse2 = result1.rows[0];
+        console.log(dbResponse);
+        console.log(dbResponse2)
+        return res.status(200).end();
+    } catch (e) {
+        console.log(e);
+        return res.status(400).json({ e });
+    }
+});
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
