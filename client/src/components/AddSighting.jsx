@@ -12,9 +12,7 @@ const AddSighting = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const selectedDate = new Date(userDate.current?.value);
-        const isChecked = e.target.checked;
         const userEvent = {species: userSpecies.current?.value, location: userLocation.current?.value, datetime: selectedDate.toISOString(), healthy: userHealthy.current?.checked, sighter_email: userSpotter.current?.value, nickname: userNickname.current?.value, timestamp: new Date()}
-        console.log("Inside the component", userEvent);
         handlePostRequest(userEvent);
     }
 

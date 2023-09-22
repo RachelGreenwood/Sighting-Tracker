@@ -41,7 +41,6 @@ app.get('/sightings', async (req, res) => {
 
 app.post('/animals', async (req, res) => {
     try {
-        console.log("In the server2", req.body);
         const newAnimal = {nickname: req.body.nickname, species: req.body.species, timestamp: new Date()}
         const newSighting = {location: req.body.location, datetime: req.body.datetime, sighter_email: req.body.sighter_email, healthy: req.body.healthy}
         const result = await db.query(
@@ -56,11 +55,8 @@ app.post('/animals', async (req, res) => {
 
         let dbResponse = result.rows[0];
         let dbResponse2 = result1.rows[0];
-        console.log(dbResponse);
-        console.log(dbResponse2)
         return res.status(200).end();
     } catch (e) {
-        console.log(e);
         return res.status(400).json({ e });
     }
 });
