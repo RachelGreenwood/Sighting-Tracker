@@ -32,7 +32,7 @@ app.get('/sightings', async (req, res) => {
     LEFT JOIN
         animals a
     ON
-        s.id = a.id`);
+        s.species = a.species`);
         res.send(animals);
     } catch (e) {
         return res.status(400).json({ e });
